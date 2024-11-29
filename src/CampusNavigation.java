@@ -3,15 +3,12 @@ import java.util.*;
 public class CampusNavigation {
 
     public static void main(String[] args) {
-        // Create graph
         Graph graph = getGraph();
 
-        // Run Dijkstra's algorithm
         int source = 0;
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
         dijkstra.computeShortestPaths(source);
 
-        // Print the paths
         System.out.println("Rutas más convenientes desde " + graph.getNodeName(source) + ":");
         for (int destination : graph.getNodes().keySet()) {
             if (destination != source) {
@@ -36,14 +33,12 @@ public class CampusNavigation {
     private static Graph getGraph() {
         Graph graph = new Graph();
 
-        // Add nodes
         graph.addNode(0, "Facultad de Ingeniería en Electricidad y Computación");
         graph.addNode(1, "Biblioteca Central");
         graph.addNode(2, "Cafetería");
         graph.addNode(3, "Auditorio Principal");
         graph.addNode(4, "Laboratorios de Química");
 
-        // Add edges with distances and accessibility coefficients
         graph.addEdge(0, 1, 500, 1.5);
         graph.addEdge(0, 2, 300, 1.0);
         graph.addEdge(2, 1, 200, 0.9);
