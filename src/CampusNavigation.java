@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.*;
 
 public class CampusNavigation {
@@ -5,15 +6,28 @@ public class CampusNavigation {
     public static void main(String[] args) {
         Graph graph = getGraph();
 
-        int source = 0;
-        DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
-        dijkstra.computeShortestPaths(source);
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Ruta más convenientes desde " + graph.getNodeName(source) + ":");
-        for (int destination : graph.getNodes().keySet()) {
-            if (destination != source) {
-                System.out.print("Camino a " + graph.getNodeName(destination) + ": ");
-                List<Integer> path = dijkstra.getPath(destination);
+        System.out.println("Bienvenido al maps de la ESPOL");
+        System.out.println("Por favor, ingresa tu punto de partida: ");
+        
+        int partida = scanner.nextInt();
+        System.out.println("Por favor, ingresa tu destino: ");
+        int destino = scanner.nextInt();
+
+        if (!graph.getNodes().containsKey(partida) || !graph.getNodes().containsKey(destino) ) {
+            System.out.println("Error: El nodo ingresado no existe en el grafo.");
+            return;}
+        
+        
+        DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
+        dijkstra.computeShortestPaths(partida);
+
+
+        System.out.println("Ruta más convenientes desde " + graph.getNodeName(partida) + ":");
+        
+            System.out.print("Camino a " + graph.getNodeName(destino) + ": ");
+                List<Integer> path = dijkstra.getPath(destino);
                 if (path == null) {
                     System.out.println("No hay camino disponible.");
                 } else {
@@ -23,29 +37,51 @@ public class CampusNavigation {
                             System.out.print(" -> ");
                         }
                     }
-                    System.out.printf("\nDistancia total ajustada: %.2f metros\n", dijkstra.getDistance(destination));
+                    
+                    System.out.printf("\nDistancia total ajustada: %.2f metros\n", dijkstra.getDistance(destino));
                 }
                 System.out.println();
-            }
-        }
+       
     }
 
     private static Graph getGraph() {
         Graph graph = new Graph();
-
-        graph.addNode(0, "FCSH");
-        graph.addNode(1, "FCNM");
-        graph.addNode(2, "FIMCP");
-        graph.addNode(3, "SWEET");
-        graph.addNode(4, "DOBE");
-
-        graph.addEdge(0, 1, 500, 1.5);
-        graph.addEdge(0, 2, 300, 1.0);
-        graph.addEdge(2, 1, 200, 0.9);
-        graph.addEdge(1, 3, 400, 1.1);
-        graph.addEdge(2, 3, 600, 1.2);
-        graph.addEdge(3, 4, 350, 1.0);
-        graph.addEdge(1, 4, 800, 0.8);
+        try {
+            // Leer nodos
+            Scanner nodeScanner = new Scanner(new File("D:\\ESPOLnavigation\\src\\nodes.txt"));
+            while (nodeScanner.hasNextLine()) {
+                String line = nodeScanner.nextLine().trim();
+                if (!line.isEmpty()) { 
+                    String[] parts = line.split(","); 
+                    int id = Integer.parseInt(parts[0]);
+                    String name = parts[1];
+                    graph.addNode(id, name);
+                }
+            }
+            nodeScanner.close();
+    
+            // Leer aristas
+            Scanner edgeScanner = new Scanner(new File("D:\\ESPOLnavigation\\src\\edges.txt"));
+            while (edgeScanner.hasNextLine()) {
+                String line = edgeScanner.nextLine().trim();
+                if (!line.isEmpty()) { 
+                    String[] parts = line.split(","); 
+                    int source = Integer.parseInt(parts[0]);
+                    int destination = Integer.parseInt(parts[1]);
+                    double distance = Double.parseDouble(parts[2]);
+                    double weight = Double.parseDouble(parts[3]);
+                    graph.addEdge(source, destination, distance, weight);
+                }
+            }
+            edgeScanner.close();
+    
+        } catch (Exception e) {
+            System.err.println("Error al leer los archivos: " + e.getMessage());
+            e.printStackTrace();
+        }
         return graph;
     }
-}
+    
+    }
+    
+
