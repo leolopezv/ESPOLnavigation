@@ -1,4 +1,6 @@
-class Edge {
+package graphStructure;
+
+public class Edge {
     private int to;
     private double weight;
 

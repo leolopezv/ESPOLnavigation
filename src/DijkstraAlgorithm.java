@@ -1,3 +1,7 @@
+import graphStructure.Edge;
+import graphStructure.Graph;
+import graphStructure.Node;
+
 import java.util.*;
 
 class DijkstraAlgorithm {
