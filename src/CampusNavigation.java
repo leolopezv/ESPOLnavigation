@@ -1,5 +1,6 @@
 import java.io.File;
 import java.util.*;
+import graphStructure.Graph;
 
 public class CampusNavigation {
 
@@ -17,9 +18,10 @@ public class CampusNavigation {
         3.SWEET   4.DOBE         5.PARKFIEC  
         6.FIEC    7.FADCOM       8.FEPOL   
         9.UBEP    10.COLISEON    11.COLISEOV
-        12.FICT   13.FIMCM
+        12.FICT   13,FIMCM
         """);
         System.out.println("---------------------------------------------");
+        System.out.println();
         System.out.println("Por favor, ingresa tu punto de partida: ");
         
         int partida = scanner.nextInt();
@@ -59,7 +61,7 @@ public class CampusNavigation {
         Graph graph = new Graph();
         try {
             // Leer nodos
-            Scanner nodeScanner = new Scanner(new File("D:\\ESPOLnavigation\\src\\nodes.txt"));
+            Scanner nodeScanner = new Scanner(new File("src/nodes.txt"));
             while (nodeScanner.hasNextLine()) {
                 String line = nodeScanner.nextLine().trim();
                 if (!line.isEmpty()) { 
@@ -72,7 +74,7 @@ public class CampusNavigation {
             nodeScanner.close();
     
             // Leer aristas
-            Scanner edgeScanner = new Scanner(new File("D:\\ESPOLnavigation\\src\\edges.txt"));
+            Scanner edgeScanner = new Scanner(new File("src/edges.txt"));
             while (edgeScanner.hasNextLine()) {
                 String line = edgeScanner.nextLine().trim();
                 if (!line.isEmpty()) { 
