@@ -7,8 +7,19 @@ public class CampusNavigation {
         Graph graph = getGraph();
 
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Bienvenido al maps de la ESPOL");
+        System.out.println();
+        System.out.println("       Bienvenido al maps de la ESPOL    ");
+        System.out.println("------------------------------------------");
+        System.out.println("            Menú de destinos:             ");
+        System.out.println("---------------------------------------------");
+        System.out.println("""
+        0.FCSH    1.FCNM         2.FIMCP       
+        3.SWEET   4.DOBE         5.PARKFIEC  
+        6.FIEC    7.FADCOM       8.FEPOL   
+        9.UBEP    10.COLISEON    11.COLISEOV
+        12.FICT   13.FIMCM
+        """);
+        System.out.println("---------------------------------------------");
         System.out.println("Por favor, ingresa tu punto de partida: ");
         
         int partida = scanner.nextInt();
