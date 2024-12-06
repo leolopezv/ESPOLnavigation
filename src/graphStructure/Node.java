@@ -1,4 +1,6 @@
-class Node implements Comparable<Node> {
+package graphStructure;
+
+public class Node implements Comparable<Node> {
     private int id;
     private double distance;
 

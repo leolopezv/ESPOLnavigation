@@ -1,6 +1,8 @@
+package graphStructure;
+
 import java.util.*;
 
-class Graph {
+public class Graph {
     private Map<Integer, String> nodes;
     private Map<Integer, List<Edge>> adjacents;
 
