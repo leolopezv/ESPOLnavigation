@@ -11,10 +11,10 @@ public class CampusNavigation {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Bienvenido al maps de la ESPOL");
-        System.out.println("Por favor, ingresa tu punto de source: ");
+        System.out.println("Por favor, ingresa tu punto de partida: ");
 
         int source = scanner.nextInt();
-        System.out.println("Por favor, ingresa tu destination: ");
+        System.out.println("Por favor, ingresa tu destino: ");
         int destination = scanner.nextInt();
 
         if (!graph.getNodes().containsKey(source) || !graph.getNodes().containsKey(destination)) {
