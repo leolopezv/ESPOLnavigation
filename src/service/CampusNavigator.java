@@ -44,8 +44,19 @@ public class CampusNavigator {
     }
 
     private int getInput(Scanner scanner, String prompt) {
-        System.out.println(prompt);
-        return scanner.nextInt();
+        int input = -1;
+        boolean valid = false;
+        while (!valid) {
+            System.out.println(prompt);
+            if (scanner.hasNextInt()) {
+                input = scanner.nextInt();
+                valid = true;
+            } else {
+                System.out.println("Error: Por favor, ingresa un número entero válido.");
+                scanner.next(); // Clear the invalid input
+            }
+        }
+        return input;
     }
 
     private boolean isValidNode(Graph graph, int node) {
