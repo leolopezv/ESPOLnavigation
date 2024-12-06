@@ -1,10 +1,12 @@
+package service;
+
 import graphStructure.Edge;
 import graphStructure.Graph;
 import graphStructure.Node;
 
 import java.util.*;
 
-class DijkstraAlgorithm {
+public class DijkstraAlgorithm {
     private Graph graph;
     private Map<Integer, Double> distances;
     private Map<Integer, Integer> predecessors;

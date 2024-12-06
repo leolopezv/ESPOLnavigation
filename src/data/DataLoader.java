@@ -11,7 +11,6 @@ public class DataLoader {
         return loadGraph("src/data/nodes.txt", "src/data/edges.txt");
     }
 
-    // Existing loadGraph method
     public static Graph loadGraph(String nodesFilePath, String edgesFilePath) {
         Graph graph = new Graph();
         try {
