@@ -21,7 +21,14 @@ public class CampusNavigator {
         }
 
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
+        long startTime = System.nanoTime();
         dijkstra.computeShortestPaths(source);
+        long endTime = System.nanoTime();
+
+        long duration = endTime - startTime;
+        System.out.println("-------------------------------------------------------");
+        System.out.printf("Tiempo de ejecución del algoritmo: %.2f ms\n", duration / 1_000_000.0);
+        System.out.println("-------------------------------------------------------");
 
         printPath(graph, dijkstra, source, destination);
     }
